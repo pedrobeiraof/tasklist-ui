@@ -1,0 +1,7 @@
+.drag-space {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin-top: 20px;
+  width: 100%;
+  height: 100px;
+}
