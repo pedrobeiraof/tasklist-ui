@@ -10,33 +10,17 @@
   border: 1px solid black;
 }
 </style>
-<script>
-	function allowDrop(ev) {
-	  ev.preventDefault();
-	}
-
-	function drag(ev) {
-	  ev.dataTransfer.setData("text", ev.target.id);
-	}
-
-	function drop(ev) {
-	  ev.preventDefault();
-	  var data = ev.dataTransfer.getData("text");
-	  draggableCard = $("#" + data)
-	  dragDiv = ev.target.getAttribute("dragdiv")
-	  draggableCard.appendTo($("#" + dragDiv))
-	}
-</script>
 <head>
-	<link rel="stylesheet" href="lib/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/application.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<title>Task List</title>
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark mb-5">
 	  <a class="navbar-brand text-white">Task List</a>
-	  <form class="form-inline">
-	    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	  <form onsubmit="filterTasks()" class="form-inline">
+	    <input id='task-filter-input' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 	    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	  </form>
 	</nav>
@@ -46,14 +30,6 @@
 	    	<div class="bg-warning text-center">
 	      	<strong>To do</strong>
 	      </div>
-	      <div id="card1" class="card mt-2" ondragstart="drag(event)" draggable="true">
-				  <div class="card-body">
-				  	<a class="close" href="#">×</a>
-				    <h5 class="card-title">Texto Teste</h5>
-				    <p class="card-text">Essa issue possui alguns problemas.</p>
-				    <p class="card-text"><small class="text-muted">#33 - Last updated 3 mins ago</small></p>
-				  </div>
-				</div>
 				<div id="todo"></div>
 	      <div id="todo-drag-space" class="drag-space border" dragdiv="todo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 	    </div>
@@ -72,8 +48,42 @@
 	    	<div id="done-drag-space" class="drag-space border" dragdiv="done" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 	    </div>
 	  </div>
+	 </div>
+	<div id="task-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+			<form onsubmit="submitForm()">
+				<div id="task-id"></div>
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title">Add new task</h4>
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		      <div class="modal-body">
+		      	<div id="edit-task-id"></div>
+					  <div class="form-group">
+					    <label for="title-label">Title</label>
+					    <input type="text" class="form-control" id="title-input" placeholder="task title">
+					  </div>
+					  <div class="form-group">
+					    <label for="description-label">Description</label>
+					    <textarea class="form-control" id="description-input" placeholder="task description" rows="3"></textarea>
+					  </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-success">Save changes</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		      </div>
+		    </div>
+			</form>
+	  </div>
 	</div>
-	<script src="lib/js/bootstrap.min.js"></script>
+	<button type="button" data-toggle="modal" data-target="#task-modal" class="float">
+		<i class="fa fa-plus"></i>
+	</button>
 	<script src="lib/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/services.js"></script>
+	<script src="assets/js/drag-and-drop.js"></script>
+	<script src="assets/js/consts.js"></script>
+	<script src="lib/js/bootstrap.min.js"></script>
 </body>
 </html>
