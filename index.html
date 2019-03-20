@@ -19,9 +19,9 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark mb-5">
 	  <a class="navbar-brand text-white">Task List</a>
-	  <form onsubmit="filterTasks()" class="form-inline">
+	  <form action="" class="form-inline">
 	    <input id='task-filter-input' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-	    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    <button onclick="filterTasks(this)" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
 	  </form>
 	</nav>
 	<div class="container border rounded p-4 mb-5">
