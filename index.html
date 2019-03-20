@@ -51,7 +51,7 @@
 	 </div>
 	<div id="task-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
-			<form onsubmit="submitForm()">
+			<form>
 				<div id="task-id"></div>
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -70,7 +70,7 @@
 					  </div>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-success">Save changes</button>
+		        <button onclick="submitForm()" type="button" class="btn btn-success">Save changes</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 		      </div>
 		    </div>
