@@ -39,16 +39,13 @@ function clearBoard() {
 }
 
 function fetchTasks(search) {
-  clearBoard();
   $.ajax({
     url:API_URL + "/tasks/",
     type: 'GET',
     data: { search },
     success: function(response){
+      clearBoard();
       appendCards(response);
-    },
-    error: function(response){
-      console.log(response);
     }
   });
 }
@@ -77,9 +74,6 @@ function updateStatus(id, dsStatus){
     data: { status },
     success: function(response){
       fetchTasks();
-    },
-    error: function(response){
-      console.log(response);
     }
   });
 }
@@ -91,9 +85,6 @@ function deleteTask(btn) {
     type: 'delete',
     success: function(){
         fetchTasks();
-    },
-    error: function(response){
-      console.log(response);
     }
   })
 }
@@ -112,9 +103,6 @@ function addNewTask() {
     success: function(response){
       $('#task-modal').modal('hide');
       fetchTasks();
-    },
-    error: function(response){
-      console.log(response.responseText);
     }
   });
 }
@@ -133,9 +121,6 @@ function editTask(id) {
     success: function(response){
       $('#task-modal').modal('hide');
       fetchTasks();
-    },
-    error: function(response){
-      console.log(response.responseText);
     }
   });
 }
